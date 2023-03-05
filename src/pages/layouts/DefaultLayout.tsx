@@ -20,6 +20,12 @@ const DefaultLayout:FC<IDefaultLayout> = ({children}) => {
             setPlay(false)
         }
     }
+
+    useEffect(()=>{
+        audioRef.current.pause();
+        setPlay(false)
+    },[audioRef])
+
     return (
         <>
             <div className={'play'}>
