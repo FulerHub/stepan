@@ -1,0 +1,624 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import './_mixins';
+
+
+@font-face {
+  font-family: 'NAMU';
+  font-weight: 500;
+  src: url('../../assets/fonts/NAMU-1910.ttf');
+  font-style: normal;
+  font-stretch: normal;
+  font-variant: normal;
+}
+
+
+
+$dark: #242424;
+$white: #FFFFFF;
+
+$text: $white;
+$text-2: $dark;
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px; }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $text-2; }
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $text; }
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $text-2; }
+
+
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html{
+  min-width: 375px;
+}
+
+body{
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+}
+
+.container{
+  max-width: 1230px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 15px;
+  @media (max-width: 992px) {
+    max-width: 720px;
+  }
+}
+
+
+.header{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  padding: 30px 0;
+  @media (max-width: 768px) {
+    padding: 25px 0;
+  }
+  &__wrap{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__logo{
+    z-index: 10;
+  }
+  &__controls{
+    position: relative;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
+  &__lang{
+    padding-right: 35px;
+  }
+  &__lang-mob{
+    display: none;
+    max-width: 720px;
+    width: 100%;
+    margin:0 auto;
+    padding: 0 15px;
+    @media (max-width: 992px) {
+      display: flex;
+    }
+  }
+}
+
+
+.lang{
+  position: relative;
+  @media (max-width: 992px) {
+    display: none;
+    &.active{
+      display: flex;
+      position: absolute;
+      z-index: 5;
+      bottom: 30px;
+      a{
+        font-size: 40px;
+        line-height: 90%;
+      }
+
+    }
+  }
+  a{
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 90%;
+    color: $text;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 0 6px;
+    @include transitionEx(0.3s);
+    opacity: 0.3;
+    &.active{
+      opacity: 1.0;
+    }
+    &:hover{
+      opacity: 1.0;
+    }
+  }
+}
+
+.menu{
+  position: relative;
+  @media (max-width: 992px) {
+
+    &.active{
+      position: fixed;
+      left: 0;
+      right: 0;
+      width: 100%;
+      visibility: visible;
+      opacity: 1;
+
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url("../assets/back-menu.jpg") no-repeat;
+      background-size: cover;
+    }
+  }
+  &__burger-wrap{
+    @media (max-width: 992px) {
+      &.active{
+        position: absolute;
+        top:0;
+        right: 0;
+        height: 80px;
+        max-width: 720px;
+        padding: 0px 15px;
+        width: 100%;
+        margin:0 auto;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+      }
+
+    }
+  }
+  &__wrap{
+    display: flex;
+    list-style: none;
+    font-weight: 300;
+    font-size: 12px;
+    @media (max-width: 992px) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      visibility: hidden;
+      opacity: 0;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-content: start;
+      margin-top: 80px;
+      overflow: auto;
+      &.active{
+        position: relative;
+        max-width: 720px;
+        margin: 80px auto;
+        visibility: visible;
+        opacity: 1;
+        padding-bottom: 100px;
+      }
+    }
+  }
+  &__item{
+    margin: 0 15px;
+    @media (max-width: 992px) {
+      width: 100%;
+    }
+    a{
+      position: relative;
+      color: $text;
+      text-decoration: none;
+      @media (max-width: 992px) {
+        display: flex;
+        width: 100%;
+        font-size: 40px;
+        line-height: 90%;
+        padding: 32px 0;
+      }
+      &:before{
+        position: absolute;
+        content: '';
+        width: 0;
+        height: 1px;
+        bottom: -5px;
+        background: $white;
+        @include transitionEx(0.4s);
+
+      }
+      &:after{
+        position: absolute;
+        content: '';
+        width: 0;
+        height: 1px;
+        bottom: -5px;
+        background: $white;
+        @include transitionEx(0.4s);
+        @media (max-width: 992px) {
+          width: 100%;
+          opacity: 0.1;
+        }
+      }
+
+      &:hover{
+        &:before{
+          width: 100%;
+        }
+      }
+    }
+  }
+  &__burger{
+    position: relative;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: end;
+    align-content: space-between;
+    width: 24px;
+    height: 16px;
+    cursor: pointer;
+    &.active{
+      span{
+        &:first-child{
+          transform: rotate(-45deg) translate(-5px, 5px);
+        }
+        &:nth-child(2) {
+         opacity: 0;
+        }
+        &:nth-child(3) {
+          width: 100%;
+          transform: rotate(45deg) translate(-5px, -5px);
+        }
+      }
+    }
+    @media (max-width: 992px) {
+      display: flex;
+    }
+    span {
+      position: relative;
+      height: 2px;
+      background: #fff;
+      border-radius: 3px;
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
+      width: 100%;
+      &:nth-child(3) {
+        width: 60%;
+      }
+    }
+
+  }
+}
+
+
+.button{
+  position: relative;
+  display: inline-block;
+  padding: 13.5px 29px;
+  background: $white;
+  color:$text-2;
+  border:1px solid $white;
+  border-radius: 63px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 90%;
+  letter-spacing: 0.1em;
+  @include transitionEx(0.3s);
+  &:hover{
+    background: transparent;
+    color:$text
+  }
+}
+
+
+.h1{
+  position: relative;
+  font-family: 'NAMU', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 195px;
+  line-height: 80%;
+ // line-height: 120%;
+  text-transform: uppercase;
+  color:$text;
+  @media (max-width: 1200px) {
+    font-size: 150px;
+  }
+  @media (max-width: 992px) {
+    font-size: 140px;
+  }
+  @media (max-width: 768px) {
+    font-size: 65px;
+    @media (min-width: 375px) {
+      font-size: 17.333vw;
+    }
+    line-height: 85%;
+  }
+
+  span{
+    position: relative;
+    display: block;
+    &:nth-child(1){
+      z-index: 3;
+    }
+    &:nth-child(3){
+      padding-left: 240px;
+      z-index: 1;
+      @media (max-width: 992px) {
+        padding-left: 40px;
+      }
+      @media (max-width: 768px) {
+        padding-left: 25px;
+      }
+    }
+  }
+}
+
+.circle-button{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  span{
+    display: flex;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 130%;
+    letter-spacing: 0.1em;
+    color: $text;
+    margin-left: 25px;
+    max-width: 100px;
+    width: 100%;
+    @media (max-width: 992px) {
+      justify-content: end;
+      text-align: right;
+      max-width: 120px;
+      margin-right: 25px;
+      order:1
+    }
+  }
+  &__button{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 66px;
+    height: 66px;
+    border:1px solid $white;
+    border-radius: 120px;
+    cursor: pointer;
+    @include transitionEx(0.4s);
+    @media (max-width: 992px) {
+      order:2
+    }
+    @media (max-width: 768px) {
+      width: 42px;
+      height: 42px;
+    }
+    &:before{
+      position: absolute;
+      content: '';
+      top:0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      width: 0;
+      height: 0;
+      background: $white;
+      border-radius: 120px;
+      @include transitionEx(0.4s);
+    }
+    &:hover{
+      svg{
+        z-index: 1;
+        path{
+          fill:$dark;
+        }
+      }
+      @include transformEx(scale(1.2));
+      &:before{
+        width: 100%;
+        height: 100%;
+        @include transformEx(scale(1.05));
+      }
+    }
+  }
+}
+
+.main{
+  position: relative;
+  background-image: url("../assets/back.jpg");
+  background-color: $dark;
+  background-size: cover;
+  min-height: 100vh;
+  padding-top: 100px;
+  overflow-x: hidden;
+  @media (max-width: 992px) {
+    padding-top: 80px;
+  }
+  @media (max-width: 768px) {
+   background-position: center;
+  }
+  &__number{
+    position: absolute;
+    @media (max-width: 992px) {
+      position: relative;
+      width: 100%;
+      order:1;
+    }
+    @media (max-width: 768px) {
+      svg{
+        width: 50px;
+      }
+    }
+  }
+  &__description{
+    position: relative;
+    width: 100%;
+    max-width: 220px;
+    margin-left: 250px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 170%;
+    color: $text;
+    opacity: 0.6;
+    @media (max-width: 992px) {
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 5px;
+      order:3;
+      max-width: calc(50% - 55px);
+    }
+    @media (max-width: 768px) {
+      max-width: 290px;
+      margin-left: 30px;
+    }
+    @media (max-width: 550px) {
+      max-width: 290px;
+      margin-left: 25px;
+    }
+  }
+  &__wrap{
+    position: relative;
+    padding-top: 170px;
+    display: flex;
+    flex-wrap: wrap;
+    @media (min-height: 800px) {
+      padding-top: 25vh;
+      @media (max-width: 1200px) {
+        padding-top: 25vh;
+      }
+    }
+    @media (max-width: 992px) {
+      padding-top: 120px;
+      padding-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      padding-top: 130px;
+      padding-bottom: 40px;
+    }
+  }
+  &__header{
+      padding: 25px 0;
+      @media (max-width: 992px) {
+        order:1;
+      }
+      @media (max-width: 768px) {
+        padding: 10px 0;
+      }
+  }
+  &__img{
+    position: absolute;
+    margin-right: -120px;
+    right: 0;
+    top: -120%;
+    z-index: 2;
+    @media (max-width: 1200px) {
+      width: 700px;
+    }
+    @media (max-width: 992px) {
+      width: 600px;
+      top: -110%;
+      margin-right: -190px;
+    }
+    @media (max-width: 768px) {
+      width: 500px;
+      top:auto;
+      bottom: -25%;
+    }
+    @media (max-width: 550px) {
+      width: 360px;
+      bottom: -33%;
+      //top: -252px;
+      margin-right: -155px;
+    }
+  }
+  &__subtitle{
+    position: relative;
+    margin-left: 250px;
+    padding: 30px 5px;
+    color:$text;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 120%;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    @media (max-width: 992px) {
+      margin-left: 50px;
+      order:2;
+    }
+    @media (max-width: 768px) {
+      padding: 20px 10px;
+      margin-left: 25px;
+      font-size: 16px;
+      line-height: 110%;
+    }
+    @media (max-width: 550px) {
+      padding: 10px 5px;
+      font-size: 14px;
+    }
+  }
+  &__btn{
+    @media (max-width: 992px) {
+      a{
+        @include transformEx(rotate(-180deg));
+        &:hover{
+          @include transformEx(rotate(-180deg) scale(1.2));
+        }
+      }
+    }
+  }
+  &__button{
+    position: relative;
+    top: -210px;
+    z-index: 1;
+    padding: 0 45px;
+    @media (max-width: 1200px) {
+      top: -185px;
+    }
+    @media (max-width: 992px) {
+      max-width: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: end;
+      top: 0px;
+      order:4;
+    }
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding: 35px 0;
+    }
+  }
+}
+
+//fun
+.play{
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 10;
+  @media (max-width: 992px) {
+    right: auto;
+    left: 15px;
+  }
+  &__wrap{
+    svg{
+      overflow: hidden;
+      width: 15px;
+      path{
+        fill: $white;
+      }
+    }
+  }
+
+}
